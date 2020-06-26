@@ -35,7 +35,8 @@ public class SuggestionsResource
 
         Map<String, Object> results = new HashMap<>();
         try {
-            List<City> cities = new ArrayList<>(csvParser.readCities("src/main/resources/data/cities_canada-usa.tsv")
+            ClassLoader classLoader = getClass().getClassLoader();
+            List<City> cities = new ArrayList<>(csvParser.readCities(classLoader.getResourceAsStream("data/cities_canada-usa.tsv"))
                                                          .values());
             cities.removeIf(c -> !c.name.contains(q));
             if (latitude != null) {

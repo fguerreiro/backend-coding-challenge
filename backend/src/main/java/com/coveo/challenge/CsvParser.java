@@ -1,8 +1,9 @@
 package com.coveo.challenge;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
@@ -15,15 +16,15 @@ public class CsvParser
 {
     /**
      * Read and parse the cities from a TSV file.
-     * @param fileName The file that contains all the cities separated by tabs
+     * @param file The file that contains all the cities separated by tabs
      * @return An HashMap with the key being the city id and the value the city instance.
      */
-    public HashMap<Number, City> readCities(String fileName)
+    public HashMap<Number, City> readCities(InputStream file)
     {
         BufferedReader reader;
         HashMap<Number, City> cities = new HashMap<>();
         try {
-            reader = new BufferedReader(new FileReader(fileName));
+            reader = new BufferedReader(new InputStreamReader(file));
 
             // Skip the first line.
             reader.readLine();
