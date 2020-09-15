@@ -10,12 +10,15 @@ import java.util.List;
 public class AutoCompleteTest {
 
     @Test
-    public void firstTest()
+    public void getWordForPrefixShouldFetchFromExistingPrefix()
     {
-        String[] dict = { "def", "a", "aba", "denim", "dear" };
+        String[] dict = { "Hannover", "Hamburg", "Hanoi", "Hamilton", "Montreal" };
         AutoComplete completeService = new AutoComplete(dict);
-        List<String> result = completeService.getWordsForPrefix("de");
+        List<String> result = completeService.getWordsForPrefix("Ha");
 
         result.stream().forEach(System.out::println);
+
+        Assertions.assertTrue(result.contains("Hamburg"));
+        Assertions.assertFalse(result.contains("Montreal"), "Should not contain Montreal for this query.");
     }
 }

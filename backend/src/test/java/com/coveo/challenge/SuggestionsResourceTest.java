@@ -19,16 +19,9 @@ public class SuggestionsResourceTest
     }
 
     @Test
-    public void testShouldReturn404()
-    {
-        suggestionsResource.suggestions("test", null, null, null);
-    }
-
-    @Test
     public void testSuggestionEndpoint()
     {
         String result = suggestionsResource.suggestions("test", null, null, null);
-
 
         Assertions.assertEquals("{\"cities\":[]}", result);
     }
