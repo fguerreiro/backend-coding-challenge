@@ -4,7 +4,6 @@
 package com.coveo.challenge;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -17,6 +16,12 @@ public class SuggestionsResourceTest
     public void setup()
     {
         ReflectionTestUtils.setField(suggestionsResource, "csvParser", new CsvParser());
+    }
+
+    @Test
+    public void testShouldReturn404()
+    {
+        suggestionsResource.suggestions("test", null, null, null);
     }
 
     @Test
